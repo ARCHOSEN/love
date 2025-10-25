@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heart of Love</title>
+    <style>
+        body {
+            background: radial-gradient(circle, #ffe6eb, #ffc0cb);
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .love {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            margin: 50px auto;
+        }
+
+        .heart {
+            width: 45px;
+            height: 45px;
+            background: url("heart.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            position: absolute;
+            animation: pulse 1.2s infinite ease-in-out;
+            transition: all 0.5s ease;
+        }
+
+        .text {
+            position: absolute;
+            top: 40px; /* Поднял выше */
+            left: 170px;
+            font-size: 32px;
+            color: #ff0000;
+            font-family: "Comic Sans MS", Arial, sans-serif;
+            animation: fade 2s infinite;
+            z-index: 10;
+        }
+
+        .character {
+            position: absolute;
+            top: 150px;
+            left: -10px;
+            width: 120px;
+            height: auto;
+            animation: bounce 1.5s infinite;
+            z-index: 5;
+        }
+
+        /* Мерцание текста */
+        @keyframes fade {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Прыжок персонажа */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Пульсация сердец */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Падающие сердечки */
+        .falling-heart {
+            position: fixed;
+            top: -50px;
+            width: 25px;
+            height: 25px;
+            background: url("heart.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.8;
+            pointer-events: none;
+            animation: fall linear forwards;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="love">
+        <!-- Большое сердце -->
+        <div class="heart" style="top: 90px; left: 180px;"></div>
+        <div class="heart" style="top: 90px; left: 220px;"></div>
+        <div class="heart" style="top: 90px; left: 260px;"></div>
+
+        <div class="heart" style="top: 130px; left: 160px;"></div>
+        <div class="heart" style="top: 130px; left: 200px;"></div>
+        <div class="heart" style="top: 130px; left: 240px;"></div>
+        <div class="heart" style="top: 130px; left: 280px;"></div>
+
+        <div class="heart" style="top: 170px; left: 140px;"></div>
+        <div class="heart" style="top: 170px; left: 180px;"></div>
+        <div class="heart" style="top: 170px; left: 220px;"></div>
+        <div class="heart" style="top: 170px; left: 260px;"></div>
+        <div class="heart" style="top: 170px; left: 300px;"></div>
+
+        <div class="heart" style="top: 210px; left: 120px;"></div>
+        <div class="heart" style="top: 210px; left: 160px;"></div>
+        <div class="heart" style="top: 210px; left: 200px;"></div>
+        <div class="heart" style="top: 210px; left: 240px;"></div>
+        <div class="heart" style="top: 210px; left: 280px;"></div>
+        <div class="heart" style="top: 210px; left: 320px;"></div>
+
+        <div class="heart" style="top: 250px; left: 140px;"></div>
+        <div class="heart" style="top: 250px; left: 180px;"></div>
+        <div class="heart" style="top: 250px; left: 220px;"></div>
+        <div class="heart" style="top: 250px; left: 260px;"></div>
+        <div class="heart" style="top: 250px; left: 300px;"></div>
+
+
+<div class="heart" style="top: 290px; left: 160px;"></div>
+        <div class="heart" style="top: 290px; left: 200px;"></div>
+        <div class="heart" style="top: 290px; left: 240px;"></div>
+        <div class="heart" style="top: 290px; left: 280px;"></div>
+
+        <div class="heart" style="top: 330px; left: 180px;"></div>
+        <div class="heart" style="top: 330px; left: 220px;"></div>
+        <div class="heart" style="top: 330px; left: 260px;"></div>
+
+        <!-- Текст -->
+        <div class="text">I Love You ❤️</div>
+
+        <!-- Персонаж -->
+        <img src="character.png" class="character">
+    </div>
+
+    <audio id="backgroundMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <button onclick="document.getElementById('backgroundMusic').play()">Play Music</button>
+
+    <script>
+        // Падающие сердечки
+        function createFallingHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("falling-heart");
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.animationDuration = 4 + Math.random() * 4 + "s"; // 4–8 сек
+            heart.style.width = 20 + Math.random() * 20 + "px";
+            heart.style.height = heart.style.width;
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 8000);
+        }
+
+        setInterval(createFallingHeart, 300);
+    </script>
+</body>
+</html>
